@@ -1,29 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TransformManager : MonoBehaviour
 {
    public Transform target;
 
-public RainManager rainManager;
+
+float NextUpdatePos=1250;
+
+
+float UpdatingPos=250;
+
+float Destroytimer=60f;
+
+ 
+
+ public GameObject LandPrefab;
+
+ public Transform ReferenceTransform;
+
+
     // Update is called once per frame
     void Update()
     {
-        if(target.position.z>750f)
-        {
-         rainManager.StopEveryThing();
-        
-       StartCoroutine(ResetPos());
+      if(target.position.z>=UpdatingPos)
+      {
+        Vector3 InstanPos=new Vector3(ReferenceTransform.transform.position.x,ReferenceTransform.transform.position.y,NextUpdatePos);
 
-        }
+        GameObject Land=Instantiate(LandPrefab,InstanPos,Quaternion.identity);
+
+       
+
+        NextUpdatePos+=250;
+
+        UpdatingPos+=250;
+
+        Destroy(Land,Destroytimer);
+      }
+
+   
     }
 
-    IEnumerator ResetPos()
-    {
-        yield return new WaitForSeconds(3f);
-        target.position=new Vector3 (target.position.x,target.position.y,0f);
-
-        rainManager.StartEveryThing();
-    }
+    
 }

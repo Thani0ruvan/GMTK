@@ -22,14 +22,14 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(KeyCode.A)){
-        transform.rotation= Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,-(TurningValue),0),0.35f);
+        transform.rotation= Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,-(TurningValue),0),0.1f);
 
         PlayerRB.velocity= new Vector3(-15,0,PlayerRB.velocity.z);
 
         IsTurning=true;
         }
         if(Input.GetKey(KeyCode.D)){
-             transform.rotation=Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,TurningValue,0),.35f);
+             transform.rotation=Quaternion.Slerp(transform.rotation, Quaternion.Euler(0,TurningValue,0),0.1f);
 
              PlayerRB.velocity= new Vector3(15,0,PlayerRB.velocity.z);
 
